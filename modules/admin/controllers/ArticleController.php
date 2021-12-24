@@ -2,10 +2,10 @@
 
 namespace app\modules\admin\controllers;
 
-use Yii;
 use app\models\Category;
 use app\models\ImageUpload;
 use app\models\Tag;
+use Yii;
 use app\models\Article;
 use app\models\ArticleSearch;
 use yii\helpers\ArrayHelper;
@@ -19,7 +19,7 @@ use yii\web\UploadedFile;
  */
 class ArticleController extends Controller
 {
-  /**
+    /**
      * @inheritDoc
      */
     public function behaviors()
@@ -75,7 +75,7 @@ class ArticleController extends Controller
         $model = new Article();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+            if ($model->load($this->request->post()) && $model->saveArticle()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
@@ -137,51 +137,61 @@ class ArticleController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    public function actionSetImage($id) {
+    //button set image
+    public function actionSetImage($id)
+    {
         $model = new ImageUpload;
 
-        if (Yii::$app->request->isPost)
+        if(Yii::$app->request->isPost)
         {
             $article = $this->findModel($id);
+
             $file = UploadedFile::getInstance($model, 'image');
-            //$article->saveImage($model->uploadFile($file, $article->image));
-            if ($article->saveImage($model->uploadFile($file, $article->image))) {
+
+            if($article->saveImage($model->uploadFile($file, $article->image)))
+            {
                 return $this->redirect(['view', 'id'=>$article->id]);
             }
         }
-
         return $this->render('image', ['model'=>$model]);
     }
 
-    public function actionSetCategory($id) {
-         $article = $this->findModel($id);
-         $selectedCategory = $article->category->id;
-         $categories = ArrayHelper::map(Category::find()->all(), 'id', 'title');
+    public function actionSetCategory($id)
+    {
+       $article = $this->findModel($id);
+       $selectedCategory=$article->category->id;
+       $categories=ArrayHelper::map(Category::find()->all(), 'id', 'title');
 
-         if(Yii::$app->request->isPost) {
+        if(Yii::$app->request->isPost)
+        {
             $category = Yii::$app->request->post('category');
-            if($article->saveCategory($category)) {
+            if($article->saveCategory($category))
+            {
                 return $this->redirect(['view', 'id'=>$article->id]);
             }
         }
 
-        return $this->render('category', [
-            'article'=>$article,
-            'selectedCategory'=>$selectedCategory,
-            'categories'=>$categories
-        ]);
+       return $this->render('category',[
+           'article'=>$article,
+           'selectedCategory'=>$selectedCategory,
+           'categories'=>$categories
+       ] );
     }
 
-    public function actionSetTags($id) {
+    public function actionSetTags($id)
+    {
         $article = $this->findModel($id);
-        $selectedTags = $article->getSelectedTags(); //
-        $tags = ArrayHelper::map(Tag::find()->all(), 'id', 'title');
+        $selectedTags=$article->getSelectedTags();
+
+        $tags=ArrayHelper::map(Tag::find()->all(), 'id', 'title');
 
         if(Yii::$app->request->isPost)
         {
             $tags = Yii::$app->request->post('tags');
-            $article->saveTags($tags);
-            return $this->redirect(['view', 'id'=>$article->id]);
+            if($article->saveTags($tags))
+            {
+                return $this->redirect(['view', 'id'=>$article->id]);
+            }
         }
         
         return $this->render('tags', [
