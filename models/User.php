@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\web\IdentityInterface;
 
 /**
  * This is the model class for table "user".
@@ -16,10 +17,10 @@ use Yii;
  *
  * @property Comment[] $comments
  */
-class User extends \yii\db\ActiveRecord
+class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public static function tableName()
     {
@@ -27,7 +28,7 @@ class User extends \yii\db\ActiveRecord
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function rules()
     {
@@ -38,7 +39,7 @@ class User extends \yii\db\ActiveRecord
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function attributeLabels()
     {
@@ -53,12 +54,55 @@ class User extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Comments]].
-     *
      * @return \yii\db\ActiveQuery
      */
     public function getComments()
     {
         return $this->hasMany(Comment::className(), ['user_id' => 'id']);
     }
+
+    public static function findIdentity($id) //1
+    {
+        return User::findOne($id);
+    }
+    public function getId()//2
+    {
+        return $this->id;
+    }
+
+    public function getAuthKey()
+    {
+        // TODO: Implement getAuthKey() method.
+    }
+
+    public function validateAuthKey($authKey)
+    {
+        // TODO: Implement validateAuthKey() method.
+    }
+
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        // TODO: Implement findIdentityByAccessToken() method.
+    }
+
+    public static function findByEmail($email)
+    {
+        return User::find()->where(['email'=>$email])->one();
+    }
+
+    public function validatePassword($password)
+    {
+        return ($this->password == $password) ? true : false;
+    }
+
+    public function create()
+    {
+        return $this->save(false);
+    }
+
+    public function getImage()
+    {
+        return $this->photo;
+    }
+    
 }
