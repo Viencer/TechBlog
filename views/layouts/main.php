@@ -31,7 +31,6 @@ PublicAsset::register($this);
 <nav class="navbar main-menu navbar-default">
     <div class="container">
         <div class="menu-content">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                         data-target="#bs-example-navbar-collapse-1">
@@ -40,7 +39,7 @@ PublicAsset::register($this);
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/"><img src="/public/images/logopet.jpg" alt=""></a>
+                <!-- <a class="navbar-brand" href="/"><img src="/public/images/logotech.png" alt=""></a> -->
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -82,19 +81,16 @@ PublicAsset::register($this);
             <div class="col-md-4">
                 <aside class="footer-widget">
                     <div class="about-img"><img src="/public/images/logopet.jpg" alt=""></div>
-                    <div class="about-content">Do you love pets? Do you have PETS!?
-                                            This is the place where pets lovers gather to meow, gaff, purr, and roar about, what else? Cats! Dogs! And others!
-                    </div>
+                    <div class="about-content">Можно что-то написать</div>
                     <div class="address">
                         <h4 class="text-uppercase">contact Info</h4>
-                        <p>mypets.com</p>
+                        <p>контакты</p>
                     </div>
                 </aside>
             </div>
-
             <div class="col-md-4">
                 <aside class="footer-widget">
-                    <h3 class="widget-title text-uppercase">Testimonials</h3>
+                    <h3 class="widget-title text-uppercase">разработчики</h3>
 
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
                         <!--Indicator-->
@@ -106,15 +102,15 @@ PublicAsset::register($this);
                             <div class="item active">
                                 <div class="single-review">
                                     <div class="review-text">
-                                        <p>This is very good site about pets! I post good news about our little friends everyday!</p>
+                                        <p>Mmm! This is very good site</p>
                                     </div>
                                     <div class="author-id">
-                                        <img src="/public/images/authoroleg.jpg" alt="">
+                                        <img src="/public/images/dev1.jpg" alt="">
 
                                         <div class="author-text">
-                                            <h4>Oleg</h4>
+                                            <h4>Dev1</h4>
 
-                                            <h4>Admin, postcreator</h4>
+                                            <h4>Admin1</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -122,36 +118,19 @@ PublicAsset::register($this);
                             <div class="item">
                                 <div class="single-review">
                                     <div class="review-text">
-                                        <p>I like cats and dogs! So i want to share posts about pets!</p>
+                                        <p>I like this site</p>
                                     </div>
                                     <div class="author-id">
-                                        <img src="/public/images/author.png" alt="">
+                                        <img src="/public/images/dev2.jpg" alt="">
 
                                         <div class="author-text">
-                                            <h4>Sophia</h4>
+                                            <h4>Dev2</h4>
 
-                                            <h4>Redactor</h4>
+                                            <h4>Admin2</h4>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                </aside>
-            </div>
-            <div class="col-md-4">
-                <aside class="footer-widget">
-                    <h3 class="widget-title text-uppercase">Donate</h3>
-
-
-                    <div class="custom-post">
-                        <div>
-                            <a href="#"><img src="/public/images/donate.jpg" alt=""></a>
-                        </div>
-                        <div>
-                            <a href="#" class="text-uppercase">Donations</a>
-                            <span class="p-date">you can donate if you can</span>
                         </div>
                     </div>
                 </aside>
@@ -162,9 +141,7 @@ PublicAsset::register($this);
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="text-center">&copy; 2021 <a href="#">We </a><i
-                            class="fa fa-heart"></i> our <a href="/">PETS</a>
-                    </div>
+                    <div class="text-center">&copy; 2021 <a href="#">tech blog</a></div>
                 </div>
             </div>
         </div>
