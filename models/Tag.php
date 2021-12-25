@@ -66,29 +66,13 @@ class Tag extends \yii\db\ActiveRecord
 
     public static function getArticleByTag($id) {
 
-     // $query = Article::find()->where(['category_id'=>$id]);
-    //    $query = Article::find()->
-    //    from(['article', 'article_tag'])->
-    //    where(['article_tag.article_id' => 'article.id'])->
-    //    andWhere(['article_tag.tag_id' => $id]);
-    // $query = (new Query())->
-    //    select(['*'])->
-    //    from(['article', 'article_tag'])->
-    //    where(['article_tag.article_id' => 'article.id', 'article_tag.tag_id' => $id]);
-
     $query = Article::find()->
        from(['article ar'])->
        leftJoin('article_tag tg', 'tg.article_id = ar.id')->
        where(['tg.tag_id' => $id]);
 
-
-    //    $query = Article::find()->
-    //    where(['id'=>$id]);
-
-       // get the total number of articles (but do not fetch the article data yet)
        $count = $query->count();
-      // die($count);
-       // create a pagination object with the total count
+
        $pagination = new Pagination(['totalCount' => $count, 'pageSize'=>6]);
 
        // limit the query using the pagination and retrieve the articles
