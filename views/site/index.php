@@ -52,7 +52,7 @@ use yii\helpers\Url;
                'popular'=>$popular,
                'recent'=>$recent,
                'categories'=>$categories,
-               //'tags'=>$tags,
+               'tags'=>$tags,
            ]);?>
             </div>
         </div>

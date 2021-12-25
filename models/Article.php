@@ -43,6 +43,7 @@ class Article extends \yii\db\ActiveRecord
             [['title','description','content'], 'string'],
             [['date'],'date','format'=>'php:Y-m-d'],
             [['date'],'default','value'=>date('Y-m-d')],
+            [['category_id'],'default','value'=>1],
             [['title'],'string','max'=>255]
         ];
     }
