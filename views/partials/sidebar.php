@@ -1,5 +1,6 @@
 <?php
 use yii\widgets\LinkPager;
+use yii\helpers\Html;
 use yii\helpers\Url;
 ?>
 <div class="col-md-4" data-sticky_column>
@@ -54,6 +55,17 @@ use yii\helpers\Url;
                             <li>
                                 <a href="<?= Url::toRoute(['site/category', 'id'=>$category->id]);?>"><?= $category->title?></a>
                                 <span class="post-count pull-right"> (<?= $category->getArticlesCount();?>)</span>
+                            </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </aside>
+                    <aside class="widget border pos-padding">
+                        <h3 class="widget-title text-uppercase text-center">Tags</h3>
+                        <ul>
+                        <?php foreach($tags as $tag):?>
+                            <li>
+                                <a href="<?= Url::toRoute(['site/tag', 'id'=>$tag->id]);?>"><?= $tag->title?></a>
+                                <span class="post-count pull-right"> (<?= $tag->getArticlesCount();?>)</span>
                             </li>
                             <?php endforeach; ?>
                         </ul>

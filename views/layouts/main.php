@@ -39,14 +39,12 @@ PublicAsset::register($this);
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <!-- <a class="navbar-brand" href="/"><img src="/public/images/logotech.png" alt=""></a> -->
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                 <ul class="nav navbar-nav text-uppercase">
-                    <li><a data-toggle="dropdown" class="dropdown-toggle" href="/">Home</a>
-                    </li>
+                    <li><a class="navbar-brand" href="/">Home</a></li>
                 </ul>
                 <div class="i_con">
                     <ul class="nav navbar-nav text-uppercase">
@@ -80,7 +78,7 @@ PublicAsset::register($this);
         <div class="row">
             <div class="col-md-4">
                 <aside class="footer-widget">
-                    <div class="about-img"><img src="/public/images/logopet.jpg" alt=""></div>
+                    <div class="about-img"><img src="/public/images/logotech.png" alt=""></div>
                     <div class="about-content">Можно что-то написать</div>
                     <div class="address">
                         <h4 class="text-uppercase">contact Info</h4>

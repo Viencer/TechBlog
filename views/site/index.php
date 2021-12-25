@@ -51,8 +51,8 @@ use yii\helpers\Url;
             <?= $this->render('/partials/sidebar',[
                'popular'=>$popular,
                'recent'=>$recent,
-               'categories'=>$categories
-   
+               'categories'=>$categories,
+               'tags'=>$tags,
            ]);?>
             </div>
         </div>

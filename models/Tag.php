@@ -53,4 +53,12 @@ class Tag extends \yii\db\ActiveRecord
         return $this->hasMany(Article::class, ['id' => 'article_id'])
             ->viaTable('article_tag', ['tag_id' => 'id']);
     }
+
+    public static function getAll() {
+     return Tag::find()->all(); 
+    }
+
+    public function getArticlesCount() {
+        return $this->getArticles()->count();
+    }
 }
