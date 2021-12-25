@@ -156,8 +156,7 @@ class ArticleController extends Controller
         return $this->render('image', ['model'=>$model]);
     }
 
-    public function actionSetCategory($id)
-    {
+    public function actionSetCategory($id) {
        $article = $this->findModel($id);
        $selectedCategory=$article->category->id;
        $categories=ArrayHelper::map(Category::find()->all(), 'id', 'title');
@@ -178,20 +177,16 @@ class ArticleController extends Controller
        ] );
     }
 
-    public function actionSetTags($id)
-    {
+    public function actionSetTags($id) {
         $article = $this->findModel($id);
-        $selectedTags=$article->getSelectedTags();
-
-        $tags=ArrayHelper::map(Tag::find()->all(), 'id', 'title');
+        $selectedTags = $article->getSelectedTags(); 
+        $tags = ArrayHelper::map(Tag::find()->all(), 'id', 'title');
 
         if(Yii::$app->request->isPost)
         {
             $tags = Yii::$app->request->post('tags');
-            if($article->saveTags($tags))
-            {
-                return $this->redirect(['view', 'id'=>$article->id]);
-            }
+            $article->saveTags($tags);
+            return $this->redirect(['view', 'id'=>$article->id]);
         }
         
         return $this->render('tags', [
