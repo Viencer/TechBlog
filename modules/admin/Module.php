@@ -28,7 +28,10 @@ class Module extends \yii\base\Module
                         'allow' =>  true,
                         'matchCallback' =>  function($rule, $action)
                         {
-                            return Yii::$app->user->identity->isAdmin;
+                            if ( Yii::$app->user->identity !== null) {
+                                return Yii::$app->user->identity->isAdmin;
+                            }
+                            
                         }
                     ]
                 ]
