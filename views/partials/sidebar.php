@@ -58,5 +58,6 @@ use yii\helpers\Url;
                             <?php endforeach; ?>
                         </ul>
                     </aside>
+
                 </div>
             </div>

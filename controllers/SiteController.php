@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Article;
 use app\models\Category;
+use app\models\Tag;
 use app\models\CommentForm;
 use Yii;
 use yii\data\Pagination;
@@ -62,8 +63,7 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         $data = Article::getAll();
 
         $popular = Article::getPopular();
@@ -72,17 +72,19 @@ class SiteController extends Controller
         
         $categories = Category::getAll();
 
+        $tags = Tag::getAll();
+
         return $this->render('index',[
             'articles'=>$data['articles'],
             'pagination'=>$data['pagination'],
             'popular'=>$popular,
             'recent'=>$recent,
-            'categories'=>$categories
+            'categories'=>$categories,
+            'tags'=>$tags
         ]);
     }
 
-    public function actionView($id)
-    {
+    public function actionView($id) {
         $article=Article::findOne($id);
 
         $popular = Article::getPopular();
@@ -91,7 +93,10 @@ class SiteController extends Controller
         
         $categories = Category::getAll();
 
-        $comments = $article->getArticleComments(); //
+        $tags = Tag::getAll();
+
+        $comments = $article->getArticleComments(); 
+
         $commentForm = new CommentForm();
 
         $article->viewedCounter();
@@ -101,6 +106,7 @@ class SiteController extends Controller
             'popular'=>$popular,
             'recent'=>$recent,
             'categories'=>$categories,
+            'tags'=>$tags,
             'comments'=>$comments,
             'commentForm'=>$commentForm
         ]);
@@ -119,7 +125,6 @@ class SiteController extends Controller
             'popular'=>$popular,
             'recent'=>$recent,
             'categories'=>$categories
-
         ]);
     }
 
