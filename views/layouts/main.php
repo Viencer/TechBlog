@@ -62,6 +62,15 @@ PublicAsset::register($this);
                     </ul>
                 </div>
 
+                <div class="i_con">
+                    <li>
+                    <form style = "margin-top:11px; margin-right:100px;" class="example" action="site/search" style="margin:auto;max-width:300px">
+                        <input type="text" placeholder="Search.." name="name">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                    </li>
+                </div>
+
             </div>
             <!-- /.navbar-collapse -->
         </div>
