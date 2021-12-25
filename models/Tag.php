@@ -1,6 +1,8 @@
 <?php
 
 namespace app\models;
+use yii\data\Pagination;
+use \yii\db\Query;
 
 use Yii;
 
@@ -60,5 +62,42 @@ class Tag extends \yii\db\ActiveRecord
 
     public function getArticlesCount() {
         return $this->getArticles()->count();
+    }
+
+    public static function getArticleByTag($id) {
+
+     // $query = Article::find()->where(['category_id'=>$id]);
+    //    $query = Article::find()->
+    //    from(['article', 'article_tag'])->
+    //    where(['article_tag.article_id' => 'article.id'])->
+    //    andWhere(['article_tag.tag_id' => $id]);
+    // $query = (new Query())->
+    //    select(['*'])->
+    //    from(['article', 'article_tag'])->
+    //    where(['article_tag.article_id' => 'article.id', 'article_tag.tag_id' => $id]);
+
+    $query = Article::find()->
+       from(['article ar'])->
+       leftJoin('article_tag tg', 'tg.article_id = ar.id')->
+       where(['tg.tag_id' => $id]);
+
+
+    //    $query = Article::find()->
+    //    where(['id'=>$id]);
+
+       // get the total number of articles (but do not fetch the article data yet)
+       $count = $query->count();
+      // die($count);
+       // create a pagination object with the total count
+       $pagination = new Pagination(['totalCount' => $count, 'pageSize'=>6]);
+
+       // limit the query using the pagination and retrieve the articles
+       $articles = $query->offset($pagination->offset)
+       ->limit($pagination->limit) //limit from database
+       ->all();
+       $data['articles']=$articles;
+       $data['pagination']=$pagination;
+       
+       return $data;
     }
 }
