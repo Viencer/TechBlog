@@ -130,6 +130,25 @@ class SiteController extends Controller
         ]);
     }
 
+    
+    public function actionTag($id) {
+        $data=Tag::getArticleByTag($id);
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = Category::getAll();
+        $tags = Tag::getAll();
+      
+        return $this->render('category',[
+            'articles'=>$data['articles'],
+            'pagination'=>$data['pagination'],
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories,
+            'tags'=>$tags
+        ]);
+    }
+
+
     /**
      * Login action.
      *
