@@ -5,6 +5,7 @@ namespace app\models;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Article;
+use yii\data\Pagination;
 
 /**
  * ArticleSearch represents the model behind the search form of `app\models\Article`.
@@ -77,7 +78,8 @@ class ArticleSearch extends Article
     public static function getArticleByName($name) {
 
         $query = Article::find()->
-           where(['like', 'title' => $name]);
+           from(['article'])->
+           where(['like', 'title', $name]);
     
            $count = $query->count();
     

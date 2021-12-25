@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Article;
 use app\models\Category;
 use app\models\Tag;
+use app\models\ArticleSearch;
 use app\models\CommentForm;
 use Yii;
 use yii\data\Pagination;
@@ -133,6 +134,23 @@ class SiteController extends Controller
     
     public function actionTag($id) {
         $data=Tag::getArticleByTag($id);
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = Category::getAll();
+        $tags = Tag::getAll();
+      
+        return $this->render('category',[
+            'articles'=>$data['articles'],
+            'pagination'=>$data['pagination'],
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories,
+            'tags'=>$tags
+        ]);
+    }
+
+    public function actionSearch($name) {
+        $data=ArticleSearch::getArticleByName($name);
         $popular = Article::getPopular();
         $recent = Article::getRecent();
         $categories = Category::getAll();
